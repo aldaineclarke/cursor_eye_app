@@ -1,5 +1,5 @@
 interface Config {
-  resolution: string;
+  resolution: number;
   fps: number;
   videoWidth: number;
   videoHeight: number;

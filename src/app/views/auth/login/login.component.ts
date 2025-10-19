@@ -52,10 +52,12 @@ constructor(private userService: UserService, private router: Router) { }
 
   this.userService.login(this.data).subscribe({
     next: (res) => {
+      console.log(res)
+    if (res.status !== 'error') {
       this.router.navigateByUrl('/settings')
       this.loginError = true; // Set loginError to true to display error message
-    
     }
+  }
   });
  }
 }
