@@ -11,13 +11,15 @@ import { SettingsComponent } from './views/settings/settings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // alternative
 import { FormsModule } from '@angular/forms';
+import { PasswordVisibilityComponent } from './shared/password-visibility/password-visibility.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    SettingsComponent
+    SettingsComponent,
+    PasswordVisibilityComponent
   ],
   imports: [
     BrowserModule,

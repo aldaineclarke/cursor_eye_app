@@ -1,6 +1,7 @@
-<main class="h-screen bg-gray-50 flex items-center justify-center p-4">
+<main class="h-screen bg-intelli-dark flex items-center justify-center p-4">
+    
     <!-- Form container: Increased padding, softer rounded corners, and a more pronounced shadow -->
-    <form class="bg-white p-10 rounded-2xl w-full max-w-lg shadow-2xl ring-1 ring-gray-100/80">
+    <form class="bg-white p-10 rounded-2xl w-full max-w-lg shadow-2xl ring-1 ring-gray-100/80" (ngSubmit)="onSubmit(form)" #form="ngForm">
 
         <!-- Heading: Tracking added for a tighter, cleaner look -->
         <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-8 text-center">
@@ -13,9 +14,18 @@
             <!-- First Name Input Group -->
             <div class="relative flex-1 floating-label">
                 <input
-                type="text"
-                id="first_nm"
-                placeholder=" "
+                type="text" 
+                name="fname" 
+                placeholder="" 
+                minlength="3"
+                maxlength="20"
+                required
+                [(ngModel)]="data.firstName" 
+                #fname="ngModel"
+                [class.invalid]="fname.invalid && (fname.dirty || fname.touched)"
+                [class.valid]="fname.valid && (fname.dirty || fname.touched)"
+                (input)="restrictInput($event)"
+                pattern="[a-zA-Z]*"
                 class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
                 >
                 <!-- Label: Adjusted position for the new input padding. Now uses custom CSS for the "pop-out" effect -->
@@ -25,14 +35,30 @@
                 >
                     First Name
                 </label>
+
+                <div class="text-red-700 text-xs" *ngIf="fname.invalid && (form.submitted || fname.dirty || fname.touched)">
+                <div *ngIf="fname.errors?.['required']">First Name is required</div>
+                <div *ngIf="fname.errors?.['minlength']">First Name must be at least 3 characters long</div>
+                <div *ngIf="fname.errors?.['maxlength']">First Name cannot be more than 50 characters long</div>
+                <div *ngIf="fname.errors?.['pattern']">invalid characters in First Name</div>
+                            </div>
             </div>
 
             <!-- Last Name Input Group -->
             <div class="relative flex-1 floating-label">
                 <input
-                type="text"
-                id="last_nm"
-                placeholder=" "
+                type="text" 
+                name="lname" 
+                placeholder=""
+                minlength="3" 
+                maxlength="20" 
+                required 
+                [(ngModel)]="data.lastName" 
+                #lname="ngModel"
+                [class.invalid]="lname.invalid && (lname.dirty || lname.touched)"
+                [class.valid]="lname.valid && (lname.dirty || lname.touched)"
+                (input)="restrictInput($event)"
+                                pattern="[a-zA-Z]*"
                 class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
                 >
                 <label
@@ -40,49 +66,88 @@
                 class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
                 >
                 Last Name</label>
+
+                <div class="text-red-700 text-xs" *ngIf="lname.invalid && (form.submitted || lname.dirty || lname.touched)">
+                <div *ngIf="lname.errors?.['required']">Last Name is required</div>
+                <div *ngIf="lname.errors?.['minlength']">Last Name must be at least 3 characters long</div>
+                <div *ngIf="lname.errors?.['maxlength']">Last Name cannot be more than 50 characters long</div>
+                <div *ngIf="lname.errors?.['pattern']">invalid characters in Last Name</div>
+                            </div>
             </div>
         </div>
 
         <!-- Email Input Group -->
         <div class="relative mb-6 floating-label">
             <input
-                type="email"
-                id="email"
-                placeholder=" "
+                type="text" 
+                name="email" 
+                placeholder="" 
+                [(ngModel)]="data.email" 
+                required
+                #email="ngModel"
+                minlength="3"
+                maxlength="50" 
+                [class.invalid]="email.invalid && (email.dirty || email.touched)"
+                [class.valid]="email.valid && (email.dirty || email.touched)"
                 class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
             >
             <label
                 for="email"
                 class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
             >Email</label>
+
+            <div class="text-red-700 text-xs" *ngIf="email.invalid && (form.submitted || email.dirty || email.touched)">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['minlength']">Email must be at least 3 characters long</div>
+            <div *ngIf="email.errors?.['maxlength']">Email cannot be more than 50 characters long</div>
+            <div *ngIf="email.errors?.['email']">Invalid email format</div>
+            <div *ngIf="email.errors?.['unique']">{{email.errors?.['unique']}}</div>
+                        </div>
         </div>
 
         <!-- Password Input Group -->
         <div class="relative mb-6 floating-label">
-            <input
+            <!-- <input
             type="password"
             id="password"
             placeholder=" "
             class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
-            >
+            > -->
             <label
             for="password"
             class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
             >Password</label>
+
+        
+            <app-password-visibility name="password" [(value)]="data.password" #registerPsswrd="passwordVisibility"></app-password-visibility >
+<!--             
+            <div class="text-red-700 text-xs" *ngIf="registerPsswrd?.control && registerPsswrd.control?.invalid && (form.submitted || registerPsswrd.control?.dirty || registerPsswrd.control?.touched)">
+                <div *ngIf="registerPsswrd.control?.errors?.['required']">Password is required.</div>
+                <div *ngIf="registerPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                <div *ngIf="registerPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+                            </div>    -->
         </div>
 
         <!-- Confirm Password Input Group -->
         <div class="relative mb-10 floating-label">
-            <input
+            <!-- <input
             type="password"
             id="confirmpassword"
             placeholder=" "
             class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
-            >
+            > -->
             <label
             for="confirmpassword"
             class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
             >Confirm Password</label>
+
+           <app-password-visibility name="confirmPassword" #confirmPsswrd="passwordVisibility"></app-password-visibility >
+             
+            <div class="text-red-700 text-xs" *ngIf="confirmPsswrd?.control && confirmPsswrd.control?.invalid && (form.submitted || confirmPsswrd.control?.dirty || confirmPsswrd.control?.touched)">
+            <div *ngIf="confirmPsswrd.control?.errors?.['required']">Password is required.</div>
+            <div *ngIf="confirmPsswrd.control?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+            <div *ngIf="confirmPsswrd.control?.errors?.['maxlength']">Password cannot be more than 50 characters long.</div>
+            </div> 
         </div>
 
         <!-- Sign up button: Increased vertical padding and added a subtle shadow/scale hover effect for better interactivity -->

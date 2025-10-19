@@ -10,7 +10,7 @@ import { APIResponse } from '../models/api-response';
 })
 export class UserService {
  // API URL for user operations
-  private API_URL = 'http://localhost:8080/api/v1/auth';
+  private API_URL = 'http://localhost:5000/';
 
 
   // Authentication token and logged-in user
@@ -53,7 +53,7 @@ export class UserService {
 
   // Login method to authenticate the user
   login(data: any): Observable<APIResponse> {
-    return this.http.post<APIResponse>(`${this.API_URL}/login`, data).pipe(
+    return this.http.post<APIResponse>(`${this.API_URL}/auth/login`, data).pipe(
       tap((res) => {
         if (res.status === 'success') {
           // Update the authentication token and logged in user details
@@ -128,15 +128,19 @@ export class UserService {
     }
     
     // Register user
-    registerProfile(data:User): Observable<APIResponse<any>> {
-      return this.http.post<APIResponse<User>>(this.API_URL + '/register', data).pipe(catchError(this._handleHttpErrors(new User())));
+    register(data:User): Observable<APIResponse<any>> {
+      return this.http.post<APIResponse<User>>(this.API_URL + 'auth/register', data).pipe(catchError(this._handleHttpErrors(new User())));
+    }
+
+    config(data:User): Observable<APIResponse<any>> {
+      return this.http.post<APIResponse<User>>(this.API_URL + 'rest/config', data).pipe(catchError(this._handleHttpErrors(new User())));
     }
 
 
     // Update user
-    updateProfile(data:User): Observable<APIResponse<any>> {
-      return this.http.put<APIResponse<any>>(this.API_URL + '/profile', data).pipe(catchError(this._handleHttpErrors(new User())));
-    }
+    // updateProfile(data:User): Observable<APIResponse<any>> {
+    //   return this.http.put<APIResponse<any>>(this.API_URL + '/profile', data).pipe(catchError(this._handleHttpErrors(new User())));
+    // }
 
 
     // Delete user

@@ -1,46 +1,77 @@
-<main class="h-screen bg-gray-50 flex items-center justify-center">
-    <form class="bg-white p-8 rounded-xl w-full max-w-sm shadow-lg">
+<main class="h-screen bg-intelli-dark flex items-center justify-center">
+    <form class="bg-white p-8 rounded-xl w-full max-w-sm shadow-lg" (ngSubmit)="onSubmit(form)" #form="ngForm">
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Login</h2>
 
-        <div class="relative mb-8">
+          <!-- Email Input Group -->
+        <div class="relative mb-6 floating-label">
             <input
-                type="text"
-                id="username"
-                placeholder=" "
-                class="peer block w-full bg-white border-b-2 border-gray-400 focus:border-blue-700 focus:outline-none py-2"
+              type="email"
+              name="email"
+              placeholder=" "
+              [(ngModel)]="data.email"
+              (ngModelChange)="onInputChange()"
+              required
+              email
+              #email="ngModel"
+              minlength="3"
+              maxlength="50"
+              [class.invalid]="email.invalid && (email.dirty || email.touched)"
+              [class.valid]="email.valid && (email.dirty || email.touched)"
+                class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
             >
             <label
-                for="username"
-                class="absolute left-0 top-0 text-gray-500 text-base transition-all transform origin-left peer-placeholder-shown:translate-y-2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-translate-y-1 peer-focus:text-blue-700 peer-focus:text-sm"
-            >
-                Username
-            </label>
+                for="email"
+                class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
+            >Email</label>
+
+            <div class="text-red-700 text-xs" *ngIf="email.invalid && (form.submitted || email.dirty || email.touched)">
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['email']">Invalid email format</div>
+            </div>
         </div>
 
-        <div class="relative mb-8">
-            <input
+        <!-- Password Input Group -->
+        <div class="relative mb-6 floating-label">
+            <!-- <input
             type="password"
             id="password"
             placeholder=" "
-            class="peer block w-full bg-white border-b-2 border-gray-400 focus:border-blue-700 focus:outline-none py-2"
-            >
+            class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
+            > -->
             <label
-                for="password"
-                class="absolute left-0 top-2 text-gray-500 text-base transition-all duration-300 transform origin-left peer-placeholder-shown:translate-y-2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-translate-y-1 peer-focus:text-blue-700 peer-focus:text-sm"
-            >
-                Password
-            </label>
+            for="password"
+            class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
+            >Password</label>
+
+            <app-password-visibility
+              name="loginPassword"
+              [(value)]="data.password"
+              (valueChange)="onInputChange()"
+              #loginPsswrd="passwordVisibility"
+            ></app-password-visibility>
+
+            <div class="text-red-700 text-xs" *ngIf="loginPsswrd.control?.invalid && (form.submitted || loginPsswrd.control?.dirty || loginPsswrd.control?.touched)">
+              <div *ngIf="loginPsswrd.control?.errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="loginPsswrd.control?.errors?.['minlength']">
+                Password must be at least 6 characters long.
+              </div>
+              <div *ngIf="loginPsswrd.control?.errors?.['maxlength']">
+                Password cannot be more than 50 characters long.
+              </div>
+            </div>
+            
         </div>
 
         <button
+        routerLink="/sign-up"
         type="submit"
-        class="w-full py-3 px-4 rounded-xl text-white font-bold bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-900 hover:to-blue-700 transition-all duration-300 shadow-md"
-        >
-            Login
-        </button>
+        class="w-full py-4 px-4 rounded-xl text-lg text-white font-bold bg-gradient-to-r from-indigo-600 to-blue-500 shadow-xl shadow-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-600/50 transform hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.99]"
+        >Login</button>
 
         <div class="mt-8 text-center">
-            <p>Don't have an account? <span><a routerLink="/sign-up" class="text-blue-700 font-bold hover:text-blue-800">Sign up</a></span></p>
+            <p>Don't have an account? <span><a routerLink="/sign-up" class="text-indigo-600 font-semibold hover:text-indigo-700 hover:underline transition-colors duration-150">Sign Up</a></span></p>
         </div>
     </form>
 </main>
