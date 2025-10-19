@@ -1,1 +1,92 @@
-<p>sign-up works!</p>
+<main class="h-screen bg-intelli-dark flex items-center justify-center">
+    <form class="bg-intelli-light p-8 rounded-xl w-full max-w-md shadow-xl">
+        <h2 class="text-3xl font-bold text-intelli-dark mb-8 text-center">Sign Up</h2>
+
+        <!-- Name container -->
+        <div class="flex flex-col sm:flex-row gap-6 mb-6">
+            <!-- First Name -->
+            <div class="relative flex-1">
+                <input
+                type="text"
+                id="first_nm"
+                placeholder=" "
+                class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+                >
+                <label
+                for="first_nm"
+                class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+                >
+                    First Name
+                </label>
+            </div>
+            
+            <!-- Last Name -->
+            <div class="relative flex-1">
+                <input
+                type="text"
+                id="last_nm"
+                placeholder=" "
+                class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+                >
+                <label
+                for="last_nm"
+                class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+                >
+                Last Name</label>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="relative mb-6">
+            <input
+                type="email"
+                id="email"
+                placeholder=" "
+                class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+            >
+            <label
+                for="email"
+                class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+            >Email</label>
+        </div>
+
+        <!-- Password -->
+        <div class="relative mb-6">
+            <input
+            type="password"
+            id="password"
+            placeholder=" "
+            class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+            >
+            <label
+            for="password"
+            class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+            >Password</label>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="relative mb-6">
+            <input
+            type="password"
+            id="confirmpassword"
+            placeholder=" "
+            class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+            >
+            <label
+            for="confirmpassword"
+            class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+            >Confirm Password</label>
+        </div>
+
+        <!-- Sign up button -->
+        <button
+        type="submit"
+        class="w-full py-3 px-4 rounded-xl text-white font-bold bg-gradient-to-r from-intelli-blue to-intelli-dark-blue hover:from-intelli-dark-blue hover:to-intelli-blue transition-all duration-300"
+        >Sign Up</button>
+
+        <!-- Login link -->
+        <div class="mt-8 text-center">
+            <p>Already have an account? <span><a routerLink="/login" class="text-intelli-blue font-bold">Login</a></span></p>
+        </div>
+    </form>
+</main>

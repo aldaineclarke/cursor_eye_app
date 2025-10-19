@@ -1,3 +1,47 @@
-<main class="h-screen bg-intelli-dark text-gray-500">
+<main class="h-screen bg-intelli-dark flex items-center justify-center">
+    <form class="bg-intelli-light p-8 rounded-xl w-full max-w-sm shadow-xl">
+        <h2 class="text-3xl font-bold text-intelli-dark mb-8 text-center">Login</h2>
+
+        <div class="relative mb-8">
+            <input
+                type="text"
+                id="username"
+                placeholder=" "
+                class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+                >
+                <label
+                for="username"
+                class="absolute left-0 top-0 text-gray-500 text-base transition-all transform origin-left peer-placeholder-shown:translate-y-2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-translate-y-1 peer-focus:text-intelli-blue peer-focus:text-sm"
+                >
+                Username
+            </label>
+        </div>
+
+        <div class="relative mb-8">
+            <input
+            type="password"
+            id="password"
+            placeholder=" "
+            class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+            >
+            <label
+                for="password"
+                class="absolute left-0 top-2 text-gray-500 text-base transition-all duration-300 transform origin-left peer-placeholder-shown:translate-y-2 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-translate-y-1 peer-focus:text-intelli-blue peer-focus:text-sm"
+                >
+                Password
+            </label>
+        </div>
+
+        <button
+        type="submit"
+        class="w-full py-3 px-4 rounded-xl text-white font-bold bg-gradient-to-r from-intelli-blue to-intelli-dark-blue hover:from-intelli-dark-blue hover:to-intelli-blue transition-all duration-300"
+        >
+            Login
+        </button>
+
+        <div class="mt-8 text-center">
+            <p>Don't have and account? <span><a routerLink="/sign-up" class="text-intelli-blue font-bold">Sign up</a></span></p>
+        </div>
+    </form>
 
 </main>
