@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Config from '../views/settings/settings';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
-  private apiBase: string = 'http://localhost:5000/rest/config';
+  private apiBase: string | undefined = environment.url;
 
   constructor(private http: HttpClient) { }
 
-  getConfig(): Observable<{message:String, data:Config}> {
-    return this.http.get<{message:String, data:Config}>(`${this.apiBase}`);
+  getConfig(): Observable<{ message: String, data: Config }> {
+    return this.http.get<{ message: String, data: Config }>(`${this.apiBase}`);
   }
 
   applyConfig(config: Config): Observable<any> {
