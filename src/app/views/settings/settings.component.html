@@ -1,47 +1,20 @@
 <div class="min-h-full bg-gray-50">
-  <nav class="bg-gray-800 shadow">
+  <nav class="bg-intelli-dark-blue shadow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0">
+            <!-- Adjusted logo size for better visibility (h-10 instead of h-8) -->
             <img
-              class="h-8 w-8"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-              alt="Workflow"
+              class="h-[6rem] w-auto max-h-full"
+              src="assets/images/cursor-i-logo.png"
+              alt="Company Logo"
             />
           </div>
 
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <a
-                href="#"
-                class="bg-indigo-600 text-white px-3 py-2 rounded-lg text-sm font-semibold"
-                >Dashboard</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-150"
-                >Team</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-150"
-                >Projects</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-150"
-                >Calendar</a
-              >
-
-              <a
-                href="#"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-150"
-                >Reports</a
-              >
+              <!-- Navigation Links go here -->
             </div>
           </div>
         </div>
@@ -50,112 +23,28 @@
           <div class="ml-4 flex items-center md:ml-6">
             <div class="ml-3 relative">
               <button
-              (click)="openLogoutModal()"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-150"
+                (click)="openLogoutModal()"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-150 flex space-x-2"
               >
-                Logout
+                <svg
+                  class="w-5 h-5 mr-1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H3a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                  />
+                </svg>
+                <p>Logout</p>
               </button>
-
-              <div
-                class="origin-top-right absolute right-0 mt-2 w-48 rounded-lg shadow-xl py-1 bg-white ring-1 ring-black ring-opacity-5"
-                role="menu"
-                [@dropdownAnimation]="isDropdownOpen ? 'open' : 'closed'"
-              >
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition duration-150"
-                  role="menuitem"
-                  >Settings</a
-                >
-
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition duration-150"
-                  role="menuitem"
-                  >Sign out</a
-                >
-              </div>
             </div>
           </div>
         </div>
-
-        <div class="-mr-2 flex md:hidden">
-          <button
-            (click)="isMobileMenuOpen = !isMobileMenuOpen"
-            class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-400"
-          >
-            <span class="sr-only">Open main menu</span>
-
-            <svg
-              *ngIf="!isMobileMenuOpen"
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-
-            <svg
-              *ngIf="isMobileMenuOpen"
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="md:hidden"
-      [@dropdownAnimation]="isMobileMenuOpen ? 'open' : 'closed'"
-    >
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        <a
-          href="#"
-          class="bg-indigo-600 text-white block px-3 py-2 rounded-lg text-base font-semibold"
-          >Dashboard</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium transition duration-150"
-          >Team</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium transition duration-150"
-          >Projects</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium transition duration-150"
-          >Calendar</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-lg text-base font-medium transition duration-150"
-          >Reports</a
-        >
       </div>
     </div>
   </nav>
@@ -168,226 +57,230 @@
     </div>
   </header>
 
-  <main class="space-y-12 p-2">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<main class="space-y-12 p-2">
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div
+      class="p-8 bg-white rounded-xl shadow-2xl border border-gray-100 space-y-8 transition-all duration-300"
+    >
+      <!-- Header -->
       <div
-        class="p-8 bg-white rounded-xl shadow-2xl border border-gray-100 space-y-8"
+        class="flex justify-between items-start border-b pb-6 border-gray-200"
       >
-        <div
-          class="flex justify-between items-start border-b pb-6 border-gray-200"
-        >
-          <div>
-            <h2 class="text-lg font-bold text-gray-900">
-              Configuration Settings
-            </h2>
-
-            <p class="mt-1 text-sm text-gray-600">
-              Adjust the system parameters and apply changes to your device.
-            </p>
-          </div>
-
-          <div
-            class="text-sm text-gray-700 font-medium flex items-center bg-gray-50 py-1 px-3 rounded-full border border-gray-200"
-          >
-            <svg
-              *ngIf="isConnected"
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4 mr-1 text-green-600"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <circle cx="12" cy="12" r="6" />
-            </svg>
-
-            <svg
-              *ngIf="!isConnected"
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4 mr-1 text-red-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <circle cx="12" cy="12" r="8" stroke-width="2" />
-            </svg>
-
-            {{ isConnected ? "Connected" : "Disconnected" }}
-          </div>
+        <div>
+          <h2 class="text-lg font-bold text-gray-900">
+            Configuration Settings
+          </h2>
+          <p class="mt-1 text-sm text-gray-600">
+            Adjust the system parameters and apply changes to your device.
+          </p>
         </div>
 
-        <div class="space-y-6">
+        <div
+          class="text-sm text-gray-700 font-medium flex items-center bg-gray-50 py-1 px-3 rounded-full border border-gray-200"
+        >
+          <svg
+            *ngIf="isConnected"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 mr-1 text-green-600 animate-pulse"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="12" r="6" />
+          </svg>
+
+          <svg
+            *ngIf="!isConnected"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 mr-1 text-red-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <circle cx="12" cy="12" r="8" stroke-width="2" />
+          </svg>
+
+          {{ isConnected ? "Connected" : "Disconnected" }}
+        </div>
+      </div>
+
+      <!-- Settings Form -->
+      <div class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Resolution</label>
+
+          <select
+            [(ngModel)]="config.resolution"
+            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 shadow-sm focus:outline-none focus:ring-intelli-blue focus:border-intelli-blue sm:text-sm rounded-lg border text-gray-900 transition"
+          >
+            <option *ngFor="let res of resolutions" [value]="res">
+              {{ res }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >FPS: {{ config.fps }}</label
+          >
+
+          <input
+            type="range"
+            min="30"
+            max="60"
+            [(ngModel)]="config.fps"
+            class="w-full mt-2 h-2 rounded-full accent-intelli-blue focus:outline-none cursor-pointer"
+          />
+        </div>
+
+        <!-- Toggle Button -->
+        <div class="pt-2">
+          <button
+            (click)="isManualVideoConfigEnabled = !isManualVideoConfigEnabled"
+            class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-intelli-blue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-intelli-blue transition-all duration-300"
+          >
+            {{
+              isManualVideoConfigEnabled
+                ? "Disable Manual Video Config"
+                : "Enable Manual Video Config"
+            }}
+          </button>
+        </div>
+
+        <!-- Manual Config Fields -->
+        <div
+          *ngIf="isManualVideoConfigEnabled"
+          @dropdownAnimation
+          class="grid grid-cols-2 gap-6"
+        >
           <div>
             <label class="block text-sm font-medium text-gray-700"
-              >Resolution</label
+              >Video Width</label
             >
-
-            <select
-              [(ngModel)]="config.resolution"
-              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg border text-gray-900"
-            >
-              <option *ngFor="let res of resolutions" [value]="res">
-                {{ res }}
-              </option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700"
-              >FPS: {{ config.fps }}</label
-            >
-
             <input
-              type="range"
-              min="30"
-              max="60"
-              [(ngModel)]="config.fps"
-              class="w-full mt-2 h-2 rounded-full accent-indigo-600 focus:outline-none"
+              type="number"
+              [(ngModel)]="config.videoWidth"
+              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 shadow-sm focus:outline-none focus:ring-intelli-blue focus:border-intelli-blue sm:text-sm rounded-lg text-gray-900 border"
             />
           </div>
 
-          <div class="pt-2">
-            <button
-              (click)="isManualVideoConfigEnabled = !isManualVideoConfigEnabled"
-              class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150"
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Video Height</label
             >
-              {{
-                isManualVideoConfigEnabled
-                  ? "Disable Manual Video Config"
-                  : "Enable Manual Video Config"
-              }}
-            </button>
+            <input
+              type="number"
+              [(ngModel)]="config.videoHeight"
+              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 shadow-sm focus:outline-none focus:ring-intelli-blue focus:border-intelli-blue sm:text-sm rounded-lg text-gray-900 border"
+            />
           </div>
+        </div>
 
+        <!-- Live Preview -->
+        <div
+          *ngIf="isManualVideoConfigEnabled"
+          @dropdownAnimation
+          class="transition-all duration-300 ease-in-out"
+        >
+          <label class="block text-gray-700 font-semibold mb-2"
+            >Live Preview</label
+          >
           <div
-            class="grid grid-cols-2 gap-6"
-            *ngIf="isManualVideoConfigEnabled"
+            class="w-full h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 border-2 border-dashed border-gray-300 hover:border-indigo-300 hover:text-indigo-500 transition-all duration-300 ease-in-out"
           >
-            <div>
-              <label class="block text-sm font-medium text-gray-700"
-                >Video Width</label
-              >
-
-              <input
-                type="number"
-                [(ngModel)]="config.videoWidth"
-                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg text-gray-900 border"
-              />
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700"
-                >Video Height</label
-              >
-
-              <input
-                type="number"
-                [(ngModel)]="config.videoHeight"
-                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg text-gray-900 border"
-              />
-            </div>
+            Preview Window
           </div>
-
-          <div *ngIf="isManualVideoConfigEnabled">
-            <label class="block text-gray-700 font-semibold mb-2"
-              >Live Preview</label
-            >
-
-            <div
-              class="w-full h-48 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 border-2 border-dashed border-gray-300"
-            >
-              Preview Window
-            </div>
-          </div>
-        </div>
-
-        <div class="flex space-x-4 border-t pt-6 border-gray-200">
-          <button
-            (click)="applyConfig()"
-            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-
-            <span>Apply Changes</span>
-          </button>
-
-          <button
-            (click)="resetConfig()"
-            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mr-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 4v6h6M20 20v-6h-6M4 20l16-16"
-              />
-            </svg>
-
-            <span>Reset Defaults</span>
-          </button>
-        </div>
-
-        <div *ngIf="statusMessage" class="text-sm text-gray-600 pt-2">
-          {{ statusMessage }}
         </div>
       </div>
-    </div>
-  </main>
 
-<!-- Logout Modal -->
-<div
-  *ngIf="isLogoutModalOpen"
-  class="fixed inset-0 z-50 flex items-center justify-center"
->
-  <!-- Blurred background overlay -->
-  <div
-    class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-    (click)="closeLogoutModal()"
-  ></div>
+      <!-- Action Buttons -->
+      <div class="flex space-x-4 border-t pt-6 border-gray-200">
+        <button
+          (click)="applyConfig()"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-intelli-blue hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-intelli-blue transition duration-150"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span>Apply Changes</span>
+        </button>
 
-  <!-- Modal content -->
-  <div
-    class="relative bg-white rounded-xl shadow-2xl w-96 max-w-sm p-6 z-10 animate-fadeIn"
-  >
-    <h2 class="text-lg font-bold text-gray-900 mb-4">
-      Confirm Logout
-    </h2>
-    <p class="text-sm text-gray-600 mb-6">
-      Are you sure you want to log out?
-    </p>
-    <div class="flex justify-end space-x-3">
-      <button
-        (click)="closeLogoutModal()"
-        class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+        <button
+          (click)="resetConfig()"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-intelli-blue transition duration-150"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 4v6h6M20 20v-6h-6M4 20l16-16"
+            />
+          </svg>
+          <span>Reset Defaults</span>
+        </button>
+      </div>
+
+      <div
+        *ngIf="statusMessage"
+        class="text-sm text-gray-600 pt-2 transition-opacity duration-500 ease-in"
       >
-        Cancel
-      </button>
-      <button
-        (click)="logout()"
-        class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
-      >
-        Logout
-      </button>
+        {{ statusMessage }}
+      </div>
     </div>
   </div>
-</div>
+</main>
 
+
+  <!-- Logout Modal -->
+  <div
+    *ngIf="isLogoutModalOpen"
+    class="fixed inset-0 z-50 flex items-center justify-center"
+  >
+    <!-- Blurred background overlay -->
+    <div
+      class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+      (click)="closeLogoutModal()"
+    ></div>
+
+    <!-- Modal content -->
+    <div
+      class="relative bg-white rounded-xl shadow-2xl w-96 max-w-sm p-6 z-10 animate-fadeIn"
+    >
+      <h2 class="text-lg font-bold text-gray-900 mb-4">Confirm Logout</h2>
+      <p class="text-sm text-gray-600 mb-6">
+        Are you sure you want to log out?
+      </p>
+      <div class="flex justify-end space-x-3">
+        <button
+          (click)="closeLogoutModal()"
+          class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+        >
+          Cancel
+        </button>
+        <button
+          (click)="logout()"
+          class="px-4 py-2 rounded-lg bg-intelli-dark-blue text-white hover:bg-intelli-dark transition"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
