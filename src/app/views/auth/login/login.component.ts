@@ -50,21 +50,11 @@ constructor(private userService: UserService, private router: Router) { }
 
   this.loginError = false; // Reset the error flag on each login attempt
 
-  this.userService.login(this.data).subscribe((res) => {
-    if (res.status === 'success') {
-      this.router.navigateByUrl('/items')
-    } else {
-
-      if (res.statusCode === 429) {
-        Swal.fire({
-        title: 'Maximum Attempts Reached',
-        text: 'You have reached the maximum number of attempts. Please try again in 10 minutes.',
-        icon: 'error',
-        confirmButtonText: 'OK'
-       })
-      }
-
+  this.userService.login(this.data).subscribe({
+    next: (res) => {
+      this.router.navigateByUrl('/settings')
       this.loginError = true; // Set loginError to true to display error message
+    
     }
   });
  }

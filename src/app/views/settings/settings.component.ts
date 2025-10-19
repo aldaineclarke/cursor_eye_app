@@ -9,6 +9,7 @@ import {
 import { ConfigService } from '../../services/config.service';
 import Config from './settings';
 import { finalize } from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -63,7 +64,7 @@ export class SettingsComponent implements OnInit {
     videoHeight: 1080,
   };
 
-  constructor(private configService: ConfigService) { }
+  constructor(private configService: ConfigService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loadConfig();
@@ -149,6 +150,7 @@ export class SettingsComponent implements OnInit {
   /** 🔹 Logout modal controls */
   openLogoutModal() {
     this.isLogoutModalOpen = true;
+
   }
 
   closeLogoutModal() {
@@ -159,5 +161,6 @@ export class SettingsComponent implements OnInit {
     this.isLogoutModalOpen = false;
     console.log('Logging out...');
     // TODO: Hook up your AuthService logout logic
+    this.userService.logout()
   }
 }

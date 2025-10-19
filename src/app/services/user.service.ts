@@ -10,7 +10,7 @@ import { APIResponse } from '../models/api-response';
 })
 export class UserService {
  // API URL for user operations
-  private API_URL = 'http://localhost:5000/';
+  private API_URL = 'http://localhost:5000/rest';
 
 
   // Authentication token and logged-in user
@@ -55,19 +55,18 @@ export class UserService {
   login(data: any): Observable<APIResponse> {
     return this.http.post<APIResponse>(`${this.API_URL}/auth/login`, data).pipe(
       tap((res) => {
-        if (res.status === 'success') {
+
           // Update the authentication token and logged in user details
-          this.auth_token = res.data.token;
+          this.auth_token = res.data.accessToken;
           this.loggedInUser = res.data.user;
 
           // Notify subscribers about the updated user
           this.loggedInUser$.next(this.loggedInUser);
 
-          if (data.rememberMe){
             // Save user data in local storage
             this.saveUserData(this.auth_token!, this.loggedInUser!);
-          }
-        }
+          
+        
       }),
       catchError(this._handleHttpErrors(new User()))
     );
@@ -76,8 +75,9 @@ export class UserService {
 
   // Save user data in local storage
   saveUserData(token: string, user: User) {
-    localStorage.setItem('authToken', token);
+    localStorage.setItem('accessToken', token);
     localStorage.setItem('user', JSON.stringify(user));
+    console.log("Saved")
   }
 
 
@@ -107,7 +107,7 @@ export class UserService {
     this.loggedInUser$.next(undefined);
 
     // Remove user data from local storage
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('accessToken');
     localStorage.removeItem('user');
 
     // Redirect to the authentication page

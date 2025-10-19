@@ -5,7 +5,7 @@ import Config from '../views/settings/settings';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
-  private apiBase: string = 'http://localhost:5000/api/config';
+  private apiBase: string = 'http://localhost:5000/rest/config';
 
   constructor(private http: HttpClient) { }
 
