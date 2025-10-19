@@ -1,92 +1,99 @@
-<main class="h-screen bg-intelli-dark flex items-center justify-center">
-    <form class="bg-intelli-light p-8 rounded-xl w-full max-w-md shadow-xl">
-        <h2 class="text-3xl font-bold text-intelli-dark mb-8 text-center">Sign Up</h2>
+<main class="h-screen bg-gray-50 flex items-center justify-center p-4">
+    <!-- Form container: Increased padding, softer rounded corners, and a more pronounced shadow -->
+    <form class="bg-white p-10 rounded-2xl w-full max-w-lg shadow-2xl ring-1 ring-gray-100/80">
 
-        <!-- Name container -->
+        <!-- Heading: Tracking added for a tighter, cleaner look -->
+        <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-8 text-center">
+            Create Your Account
+        </h2>
+
+        <!-- Name container: Added space-y for better vertical separation on mobile -->
         <div class="flex flex-col sm:flex-row gap-6 mb-6">
-            <!-- First Name -->
-            <div class="relative flex-1">
+
+            <!-- First Name Input Group -->
+            <div class="relative flex-1 floating-label">
                 <input
                 type="text"
                 id="first_nm"
                 placeholder=" "
-                class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+                class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
                 >
+                <!-- Label: Adjusted position for the new input padding. Now uses custom CSS for the "pop-out" effect -->
                 <label
                 for="first_nm"
-                class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+                class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
                 >
                     First Name
                 </label>
             </div>
-            
-            <!-- Last Name -->
-            <div class="relative flex-1">
+
+            <!-- Last Name Input Group -->
+            <div class="relative flex-1 floating-label">
                 <input
                 type="text"
                 id="last_nm"
                 placeholder=" "
-                class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+                class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
                 >
                 <label
                 for="last_nm"
-                class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+                class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
                 >
                 Last Name</label>
             </div>
         </div>
 
-        <!-- Email -->
-        <div class="relative mb-6">
+        <!-- Email Input Group -->
+        <div class="relative mb-6 floating-label">
             <input
                 type="email"
                 id="email"
                 placeholder=" "
-                class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+                class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
             >
             <label
                 for="email"
-                class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+                class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
             >Email</label>
         </div>
 
-        <!-- Password -->
-        <div class="relative mb-6">
+        <!-- Password Input Group -->
+        <div class="relative mb-6 floating-label">
             <input
             type="password"
             id="password"
             placeholder=" "
-            class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+            class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
             >
             <label
             for="password"
-            class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+            class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
             >Password</label>
         </div>
 
-        <!-- Confirm Password -->
-        <div class="relative mb-6">
+        <!-- Confirm Password Input Group -->
+        <div class="relative mb-10 floating-label">
             <input
             type="password"
             id="confirmpassword"
             placeholder=" "
-            class="peer block w-full bg-intelli-light border-b-2 border-gray-400 focus:border-intelli-blue focus:outline-none py-2"
+            class="peer block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all duration-200 text-gray-800"
             >
             <label
             for="confirmpassword"
-            class="absolute left-0 top-1 text-gray-500 text-base transition-all duration-300 transform peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-intelli-blue"
+            class="absolute left-4 top-3 text-gray-500 text-base cursor-text transition-all duration-300 transform peer-focus:text-indigo-600"
             >Confirm Password</label>
         </div>
 
-        <!-- Sign up button -->
+        <!-- Sign up button: Increased vertical padding and added a subtle shadow/scale hover effect for better interactivity -->
         <button
         type="submit"
-        class="w-full py-3 px-4 rounded-xl text-white font-bold bg-gradient-to-r from-intelli-blue to-intelli-dark-blue hover:from-intelli-dark-blue hover:to-intelli-blue transition-all duration-300"
+        class="w-full py-4 px-4 rounded-xl text-lg text-white font-bold bg-gradient-to-r from-indigo-600 to-blue-500 shadow-xl shadow-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-600/50 transform hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.99]"
         >Sign Up</button>
 
-        <!-- Login link -->
-        <div class="mt-8 text-center">
-            <p>Already have an account? <span><a routerLink="/login" class="text-intelli-blue font-bold">Login</a></span></p>
+        <!-- Login link: Cleaner text and stronger hover effect -->
+        <div class="mt-8 text-center text-gray-500 text-sm">
+            <p>Already have an account? <span><a routerLink="/login" class="text-indigo-600 font-semibold hover:text-indigo-700 hover:underline transition-colors duration-150">Login here</a></span></p>
         </div>
     </form>
 </main>
