@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -6,8 +6,9 @@ import {
   transition,
   animate,
 } from '@angular/animations';
-
+import { ConfigService } from '../../services/config.service';
 import Config from './settings';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-settings',
@@ -39,40 +40,113 @@ import Config from './settings';
     ]),
   ],
 })
-export class SettingsComponent {
-  isDropdownOpen = false;
-  isMobileMenuOpen = false;
-  isManualVideoConfigEnabled: boolean = false;
+export class SettingsComponent implements OnInit {
+  // --- UI states ---
+  isDropdownOpen:boolean = false;
+  isMobileMenuOpen:boolean = false;
+  isManualVideoConfigEnabled:boolean = false;
+  isLogoutModalOpen:boolean = false;
+  isConnected:boolean = false;
+  isLoading:boolean = false;
 
-  isConnected: boolean = true; // mock status, can be updated via backend
-  statusMessage: string = '';
+  // --- Feedback states ---
+  statusMessage:string = '';
+  toastMessage:string = '';
+  toastType: 'success' | 'error' | '' = '';
 
-  isLogoutModalOpen: boolean = false;
-
+  // --- Configuration data ---
   resolutions: string[] = ['720p', '1080p', '1440p', '4K'];
-
   config: Config = {
     resolution: '1080p',
     fps: 30,
     videoWidth: 1920,
-    videoHeight: 1080
+    videoHeight: 1080,
   };
 
+  constructor(private configService: ConfigService) { }
+
+  ngOnInit(): void {
+    this.loadConfig();
+  }
+
+  /** 🔹 Fetch configuration from backend */
+  loadConfig() {
+    this.isLoading = true;
+    this.statusMessage = 'Loading configuration...';
+
+    this.configService
+      .getConfig()
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe({
+        next: (data: Config) => {
+          this.config = data;
+          this.isConnected = true;
+          this.statusMessage = 'Configuration loaded ✅';
+          this.showToast('Configuration loaded successfully.', 'success');
+        },
+        error: (err) => {
+          this.isConnected = false;
+          this.statusMessage = 'Failed to load configuration ❌';
+          this.showToast('Unable to reach device configuration.', 'error');
+          console.error(err);
+        },
+      });
+  }
+
+  /** 🔹 Apply configuration changes */
   applyConfig() {
-    console.log('Applying config:', this.config);
-    this.statusMessage = 'Configuration applied successfully ✅';
+    this.isLoading = true;
+    this.statusMessage = 'Applying configuration...';
+
+    this.configService
+      .applyConfig(this.config)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe({
+        next: () => {
+          this.statusMessage = 'Configuration applied successfully ✅';
+          this.showToast('Configuration applied successfully.', 'success');
+        },
+        error: (err) => {
+          this.statusMessage = 'Failed to apply configuration ❌';
+          this.showToast('Error applying configuration.', 'error');
+          console.error(err);
+        },
+      });
   }
 
+  /** 🔹 Reset to default configuration */
   resetConfig() {
-    this.config = {
-      resolution: '1080p',
-      fps: 30,
-      videoWidth: 1920,
-      videoHeight: 1080
-    };
-    this.statusMessage = 'Configuration reset to defaults';
+    this.isLoading = true;
+    this.statusMessage = 'Resetting configuration...';
+
+    this.configService
+      .resetConfig()
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe({
+        next: (data: Config) => {
+          this.config = data;
+          this.statusMessage = 'Configuration reset to defaults ✅';
+          this.showToast('Configuration reset to defaults.', 'success');
+        },
+        error: (err) => {
+          this.statusMessage = 'Failed to reset configuration ❌';
+          this.showToast('Error resetting configuration.', 'error');
+          console.error(err);
+        },
+      });
   }
 
+  /** 🔹 Toast helper for feedback */
+  showToast(message: string, type: 'success' | 'error') {
+    this.toastMessage = message;
+    this.toastType = type;
+    setTimeout(() => {
+      this.toastMessage = '';
+      this.toastType = '';
+    }, 3000);
+  }
+
+  /** 🔹 Logout modal controls */
   openLogoutModal() {
     this.isLogoutModalOpen = true;
   }
@@ -83,9 +157,7 @@ export class SettingsComponent {
 
   logout() {
     this.isLogoutModalOpen = false;
-    // Implement your logout logic here
     console.log('Logging out...');
-    // For example: this.authService.logout();
+    // TODO: Hook up your AuthService logout logic
   }
-
 }
