@@ -13,98 +13,105 @@
               "namedChunks": true,
               "optimization": false,
               "sourceMap": true,
-              "vendorChunk": true
-            },
-            "production": {
-              "budgets": [
-                {
-                  "maximumError": "1mb",
-                  "maximumWarning": "500kb",
-                  "type": "initial"
-                },
-                {
-                  "maximumError": "4kb",
-                  "maximumWarning": "2kb",
-                  "type": "anyComponentStyle"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.production.ts"
-                }
-              ],
-              "outputHashing": "all"
-            }
+              "vendorChunk": true,
+            ],
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.development.ts"
+              }
+            ]
           },
-          "defaultConfiguration": "production",
-          "options": {
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+          "production": {
+            "budgets": [
+              {
+                "maximumError": "1mb",
+                "maximumWarning": "500kb",
+                "type": "initial"
+              },
+              {
+                "maximumError": "4kb",
+                "maximumWarning": "2kb",
+                "type": "anyComponentStyle"
+              }
             ],
-            "index": "src/index.html",
-            "inlineStyleLanguage": "scss",
-            "main": "src/main.ts",
-            "outputPath": "dist/cursor_eye_app",
-            "polyfills": [
-              "zone.js"
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.production.ts"
+              }
             ],
-            "scripts": [],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "tsConfig": "tsconfig.app.json"
+            "outputHashing": "all"
           }
         },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "cursor_eye_app:build"
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "cursor_eye_app:build:development"
-            },
-            "production": {
-              "browserTarget": "cursor_eye_app:build:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "inlineStyleLanguage": "scss",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "scripts": [],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "tsConfig": "tsconfig.spec.json"
-          }
+        "defaultConfiguration": "production",
+        "options": {
+          "assets": [
+            "src/favicon.ico",
+            "src/assets"
+          ],
+          "index": "src/index.html",
+          "inlineStyleLanguage": "scss",
+          "main": "src/main.ts",
+          "outputPath": "dist/cursor_eye_app",
+          "polyfills": [
+            "zone.js"
+          ],
+          "scripts": [],
+          "styles": [
+            "src/styles.scss"
+          ],
+          "tsConfig": "tsconfig.app.json"
         }
       },
-      "prefix": "app",
-      "projectType": "application",
-      "root": "",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
+      "extract-i18n": {
+        "builder": "@angular-devkit/build-angular:extract-i18n",
+        "options": {
+          "browserTarget": "cursor_eye_app:build"
         }
       },
-      "sourceRoot": "src"
-    }
-  },
-  "version": 1
+      "serve": {
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "configurations": {
+          "development": {
+            "browserTarget": "cursor_eye_app:build:development"
+          },
+          "production": {
+            "browserTarget": "cursor_eye_app:build:production"
+          }
+        },
+        "defaultConfiguration": "development"
+      },
+      "test": {
+        "builder": "@angular-devkit/build-angular:karma",
+        "options": {
+          "assets": [
+            "src/favicon.ico",
+            "src/assets"
+          ],
+          "inlineStyleLanguage": "scss",
+          "polyfills": [
+            "zone.js",
+            "zone.js/testing"
+          ],
+          "scripts": [],
+          "styles": [
+            "src/styles.scss"
+          ],
+          "tsConfig": "tsconfig.spec.json"
+        }
+      }
+    },
+    "prefix": "app",
+    "projectType": "application",
+    "root": "",
+    "schematics": {
+      "@schematics/angular:component": {
+        "style": "scss"
+      }
+    },
+    "sourceRoot": "src"
+  }
+},
+"version": 1
 }
