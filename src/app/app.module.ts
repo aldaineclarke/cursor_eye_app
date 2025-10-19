@@ -10,6 +10,7 @@ import { SettingsComponent } from './views/settings/settings.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations'; // alternative
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule, // <-- Add this
     // NoopAnimationsModule,  // <-- OR use this if you want animations disabled
     AppRoutingModule,
