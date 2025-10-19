@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError(err => {
          Swal.fire({
                 title: 'Application Error',
-                text: err.error.Message,
+                text: err.Message ?? err.error.message,
                 icon: 'error',
                 confirmButtonText: 'OK',
               });

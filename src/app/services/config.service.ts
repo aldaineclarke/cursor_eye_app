@@ -9,15 +9,15 @@ export class ConfigService {
 
   constructor(private http: HttpClient) { }
 
-  getConfig(): Observable<Config> {
-    return this.http.get<Config>(`${this.apiBase}`);
+  getConfig(): Observable<{message:String, data:Config}> {
+    return this.http.get<{message:String, data:Config}>(`${this.apiBase}`);
   }
 
   applyConfig(config: Config): Observable<any> {
-    return this.http.post(`${this.apiBase}/apply`, config);
+    return this.http.post(`${this.apiBase}`, config);
   }
 
-  resetConfig(): Observable<Config> {
-    return this.http.post<Config>(`${this.apiBase}/reset`, {});
+  resetConfig(config: Config): Observable<Config> {
+    return this.http.put<Config>(`${this.apiBase}/reset`, config);
   }
 }

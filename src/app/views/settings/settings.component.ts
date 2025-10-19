@@ -49,16 +49,22 @@ export class SettingsComponent implements OnInit {
   isLogoutModalOpen:boolean = false;
   isConnected:boolean = false;
   isLoading:boolean = false;
-
+  user?:IUser;
   // --- Feedback states ---
   statusMessage:string = '';
   toastMessage:string = '';
   toastType: 'success' | 'error' | '' = '';
 
   // --- Configuration data ---
-  resolutions: string[] = ['720p', '1080p', '1440p', '4K'];
+  resolutions: number[] = [720, 1080, 1440, 4000];
   config: Config = {
-    resolution: '1080p',
+    resolution: 720,
+    fps: 30,
+    videoWidth: 1920,
+    videoHeight: 1080,
+  };
+  default_config: Config = {
+    resolution: 720,
     fps: 30,
     videoWidth: 1920,
     videoHeight: 1080,
@@ -68,6 +74,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadConfig();
+
   }
 
   /** 🔹 Fetch configuration from backend */
@@ -79,8 +86,11 @@ export class SettingsComponent implements OnInit {
       .getConfig()
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe({
-        next: (data: Config) => {
-          this.config = data;
+        next: (res) => {
+          this.config = res.data;
+          let storedUser = localStorage.getItem("user");
+          this.user = storedUser ? JSON.parse(storedUser) : "";
+          console.log(res)
           this.isConnected = true;
           this.statusMessage = 'Configuration loaded ✅';
           this.showToast('Configuration loaded successfully.', 'success');
@@ -98,7 +108,13 @@ export class SettingsComponent implements OnInit {
   applyConfig() {
     this.isLoading = true;
     this.statusMessage = 'Applying configuration...';
+    this.config = {
+      fps : +(this.config.fps),
+      videoHeight : +(this.config.videoHeight),
+      videoWidth: +(this.config.videoWidth),
+      resolution: +(this.config.resolution)
 
+    }
     this.configService
       .applyConfig(this.config)
       .pipe(finalize(() => (this.isLoading = false)))
@@ -121,13 +137,14 @@ export class SettingsComponent implements OnInit {
     this.statusMessage = 'Resetting configuration...';
 
     this.configService
-      .resetConfig()
+      .resetConfig(this.default_config)
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe({
         next: (data: Config) => {
           this.config = data;
           this.statusMessage = 'Configuration reset to defaults ✅';
           this.showToast('Configuration reset to defaults.', 'success');
+          this.loadConfig()
         },
         error: (err) => {
           this.statusMessage = 'Failed to reset configuration ❌';
@@ -163,4 +180,11 @@ export class SettingsComponent implements OnInit {
     // TODO: Hook up your AuthService logout logic
     this.userService.logout()
   }
+}
+
+export interface IUser {
+  firstName: string;
+  id: string;
+  lastName: string;
+  email:string;
 }

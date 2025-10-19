@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { Observable, catchError, of, tap, Subject } from 'rxjs';
 import { APIResponse } from '../models/api-response';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
  // API URL for user operations
-  private API_URL = 'http://localhost:5000/rest';
+  private API_URL = 'http://localhost:5000/rest/';
 
 
   // Authentication token and logged-in user
@@ -53,7 +54,7 @@ export class UserService {
 
   // Login method to authenticate the user
   login(data: any): Observable<APIResponse> {
-    return this.http.post<APIResponse>(`${this.API_URL}/auth/login`, data).pipe(
+    return this.http.post<APIResponse>(`${this.API_URL}auth/login`, data).pipe(
       tap((res) => {
 
           // Update the authentication token and logged in user details
@@ -109,7 +110,22 @@ export class UserService {
     // Remove user data from local storage
     localStorage.removeItem('accessToken');
     localStorage.removeItem('user');
-
+     const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                },
+              });
+    
+              Toast.fire({
+                icon: 'success',
+                title: 'Logout successfully.',
+              });
     // Redirect to the authentication page
     this.router.navigateByUrl('/login');
   }
@@ -122,7 +138,7 @@ export class UserService {
 
     // Get user by ID || get user profile
     getProfile(): Observable<APIResponse<any>> {
-      return this.http.get<APIResponse<any>>(`${this.API_URL}/profile`).pipe(tap((res) => {
+      return this.http.get<APIResponse<any>>(`${this.API_URL}profile`).pipe(tap((res) => {
         
       }), catchError(this._handleHttpErrors(new User())));
     }
@@ -145,7 +161,7 @@ export class UserService {
 
     // Delete user
     deleteProfile(): Observable<APIResponse<User>> {
-      return this.http.delete<APIResponse<User>>(this.API_URL + '/profile').pipe(catchError(this._handleHttpErrors(new User())));
+      return this.http.delete<APIResponse<User>>(this.API_URL + 'profile').pipe(catchError(this._handleHttpErrors(new User())));
     }
 
   // >>>>>>>>>>>>>>>>>>>> End of CRUD Operations <<<<<<<<<<<<<<<<<<<<
