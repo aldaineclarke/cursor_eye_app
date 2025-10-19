@@ -9,63 +9,6 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  data = {
-  email: '',
-  password: '',
-  rememberMe: null
- };
-
- loginError = false; // Flag to track if there's a login error
-
-
-// >> Initialize showForgotPasswordModal variable <<
-// showForgotPasswordModal: boolean = false;
-
-// openForgotPasswordModal() {
-//   this.showForgotPasswordModal = true;
-// }
-
-// closeForgotPasswordModal() {
-//   this.showForgotPasswordModal = false;
-// }
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-constructor(private userService: UserService, private router: Router) { }
-
- ngOnInit(): void {}
-
-
- onInputChange() {
-  this.loginError = false; // Reset login error on input change
- }
-   
-
- onSubmit(form: NgForm) {
-
-  if(form.invalid) {
-    return; // Exit if form is invalid
-  }
-
-  this.loginError = false; // Reset the error flag on each login attempt
-
-  this.userService.login(this.data).subscribe((res) => {
-    if (res.status === 'success') {
-      this.router.navigateByUrl('/items')
-    } else {
-
-      if (res.statusCode === 429) {
-        Swal.fire({
-        title: 'Maximum Attempts Reached',
-        text: 'You have reached the maximum number of attempts. Please try again in 10 minutes.',
-        icon: 'error',
-        confirmButtonText: 'OK'
-       })
-      }
-
-      this.loginError = true; // Set loginError to true to display error message
-    }
-  });
- }
+export class LoginComponent {
+  
 }
